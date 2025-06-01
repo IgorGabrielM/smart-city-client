@@ -1,17 +1,16 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component} from '@angular/core';
 import * as L from 'leaflet';
 import {RouterLink} from '@angular/router';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-create-alert',
   imports: [
     RouterLink
   ],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
-  standalone: true
+  templateUrl: './create-alert.component.html',
+  styleUrl: './create-alert.component.scss'
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class CreateAlertComponent implements AfterViewInit{
   private map: any;
 
   private initMap(): void {
@@ -26,30 +25,25 @@ export class HomeComponent implements OnInit, AfterViewInit {
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     });
 
-    const customIcon = L.icon({
-      iconUrl: 'https://cdn-icons-png.flaticon.com/512/999/999105.png',
-      iconSize: [32, 32],
-      iconAnchor: [16, 32],
-    });
-
     const customIconR = L.icon({
       iconUrl: 'https://cdn-icons-png.flaticon.com/512/484/484167.png',
       iconSize: [32, 32],
       iconAnchor: [16, 32],
     });
 
-    // dados carregados da api
-    L.marker([-23.089, -47.218], { icon: customIcon }).addTo(this.map);
-    L.marker([-23.089, -46.218], { icon: customIconR }).addTo(this.map);
+    this.map.on('click', (event: any) => {
+      const lat = event.latlng.lat;
+      const lng = event.latlng.lng;
+      console.log(event.latlng.lat, event.latlng.lng)
+
+      L.marker([lat, lng], { icon: customIconR }).addTo(this.map)
+    });
+
     tiles.addTo(this.map);
   }
 
   ngAfterViewInit(): void {
     this.initMap()
-  }
-
-  ngOnInit() {
-
   }
 
 }

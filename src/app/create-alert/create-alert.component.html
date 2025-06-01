@@ -1,0 +1,62 @@
+<div class="flex justify-between mt-9 mr-5 h-screen">
+  <div class="w-full">
+    <div class="map-container">
+      <div class="map-frame">
+        <div id="map"></div>
+      </div>
+    </div>
+  </div>
+  <div class="w-10/12 h-full flex flex-col gap-5">
+    <div class="h-fit border rounded-xl shadow p-5">
+      <div class="flex items-center gap-2">
+        <img class="w-5 h-5" src="https://cdn-icons-png.flaticon.com/512/484/484167.png" alt="Pin de alerta">
+        <span class="font-bold text-xl">Relatar evento</span>
+      </div>
+      <div class="mt-5 flex flex-col gap-3">
+        <div>
+          <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Seu nome:</label>
+          <input type="text" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Ex: Enchente" required />
+        </div>
+        <div>
+          <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Email:</label>
+          <input type="text" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Ex: Enchente" required />
+        </div>
+        <div>
+          <label for="event-name" class="block mb-2 text-sm font-medium text-gray-900">Titulo do evento:</label>
+          <input type="text" id="event-name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Ex: Enchente" required />
+        </div>
+        <div>
+          <label for="description" class="block mb-2 text-sm font-medium text-gray-900">Descrição</label>
+          <textarea id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Descrição..."></textarea>
+        </div>
+        <div>
+          <label for="report-type" class="block mb-2 text-sm font-medium text-gray-900">Tipo do evento</label>
+          <select id="report-type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            <option selected>Escolha um tipo</option>
+            <option value="infrastructure">Infraestrutura</option>
+            <option value="security">Segurança</option>
+            <option value="environment">Meio Ambiente</option>
+            <option value="traffic">Trânsito</option>
+            <option value="emergency">Emergência</option>
+            <option value="suggestion">Sugestão</option>
+          </select>
+        </div>
+        <div>
+          <label for="priority" class="block mb-2 text-sm font-medium text-gray-900">Prioridade</label>
+          <select id="priority" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            <option selected>Escolha a prioridade</option>
+            <option value="urgent">Urgente</option>
+            <option value="high">Alto</option>
+            <option value="medium">Médio</option>
+            <option value="low">Baixo</option>
+          </select>
+        </div>
+
+        <button class="py-2 px-5 rounded-md w-1/2 mx-auto mt-2 font-extrabold text-lg bg-[color:#A3CCAB]">
+          <span>Enviar</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>

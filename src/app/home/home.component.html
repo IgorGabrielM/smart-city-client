@@ -1,5 +1,41 @@
-<div class="map-container">
-  <div class="map-frame">
-    <div id="map"></div>
+<div class="w-full h-20 bg-[color:#A3CCAB]">
+  <div class="w-full h-full items-center p-10 flex justify-between">
+    <span class="font-extrabold text-xl">Smart City</span>
+    <span class="font-bold">Home</span>
+  </div>
+</div>
+
+<div class="flex justify-between mt-9 mr-5 h-screen">
+  <div class="w-full">
+    <div class="map-container">
+      <div class="map-frame">
+        <div id="map"></div>
+      </div>
+    </div>
+  </div>
+  <div class="w-10/12 h-4/5 flex flex-col gap-5">
+    <div class="h-1/2 border rounded-xl shadow p-5">
+      <div class="flex items-center gap-2">
+        <img class="w-5 h-5" src="https://cdn-icons-png.flaticon.com/512/999/999105.png" alt="Pin de alerta">
+        <span class="font-bold text-xl">Alertas</span>
+      </div>
+      <div class="flex flex-col border rounded p-2 mt-3">
+        <span class="font-bold text-lg">Titulo</span>
+        <span>DD/MM/YYYY</span>
+      </div>
+    </div>
+    <div class="h-1/2 border rounded-xl shadow p-5 flex-col justify-between">
+      <div class="flex items-center gap-2">
+        <img class="w-5 h-5" src="https://cdn-icons-png.flaticon.com/512/484/484167.png" alt="Pin de relatado pela comunidade">
+        <span class="font-bold text-xl">Relatados pela comunidade</span>
+      </div>
+      <div class="flex flex-col border rounded p-2 mt-3">
+        <span class="font-bold text-lg">Titulo</span>
+        <span>DD/MM/YYYY</span>
+      </div>
+      <div class="bg-[color:#A3CCAB] p-2 rounded w-fit px-5" [routerLink]="['create-alert']">
+        <span class="font-bold">Relatar</span>
+      </div>
+    </div>
   </div>
 </div>
