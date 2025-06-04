@@ -1,12 +1,22 @@
-<div class="flex justify-between mt-9 mr-5 h-screen">
-  <div class="w-full">
+<div class="w-full h-20 bg-[color:#A3CCAB]">
+  <div class="w-full h-full items-center p-10 flex justify-between">
+    <span class="font-extrabold text-xl" [routerLink]="['']">Smart City</span>
+    <div class="flex gap-10">
+      <span class="font-bold" [routerLink]="['create-alert']">Relatar</span>
+      <span class="font-bold" [routerLink]="['']">Home</span>
+    </div>
+  </div>
+</div>
+
+<div class="flex justify-between mt-9 mr-5 h-screen container-responsive">
+  <div class="w-full content-responsive">
     <div class="map-container">
       <div class="map-frame">
         <div id="map"></div>
       </div>
     </div>
   </div>
-  <div class="w-10/12 h-full flex flex-col gap-5">
+  <div class="w-10/12 h-full flex flex-col gap-5 content-responsive">
     <div class="h-fit border rounded-xl shadow p-5">
       <div class="flex items-center gap-2">
         <img class="w-5 h-5" src="https://cdn-icons-png.flaticon.com/512/484/484167.png" alt="Pin de alerta">
@@ -15,7 +25,7 @@
       <div class="mt-5 flex flex-col gap-3">
         <div>
           <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Seu nome:</label>
-          <input type="text" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Ex: Enchente" required />
+          <input [(ngModel)]="name" type="text" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Ex: Enchente" required />
         </div>
         <div>
           <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Email:</label>
@@ -52,7 +62,7 @@
           </select>
         </div>
 
-        <button class="py-2 px-5 rounded-md w-1/2 mx-auto mt-2 font-extrabold text-lg bg-[color:#A3CCAB]">
+        <button class="py-2 px-5 rounded-md w-1/2 mx-auto mt-2 font-extrabold text-lg bg-[color:#A3CCAB]" (click)="send()">
           <span>Enviar</span>
         </button>
       </div>

@@ -1,22 +1,44 @@
 import {AfterViewInit, Component} from '@angular/core';
 import * as L from 'leaflet';
-import {RouterLink} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
+import {SmartCityService} from '../data/service/smart-city.service';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-create-alert',
   imports: [
-    RouterLink
+    RouterLink,
+    HttpClientModule,
+    FormsModule
   ],
   templateUrl: './create-alert.component.html',
-  styleUrl: './create-alert.component.scss'
+  styleUrl: './create-alert.component.scss',
+  providers: [
+    HttpClient,
+    SmartCityService
+  ]
 })
 export class CreateAlertComponent implements AfterViewInit{
   private map: any;
+  latitude: number;
+  longitude: number;
+  name: string;
+  type = 'temperature';
+  status = 'active';
+  currentValue = 36.04;
+  unit = 'C';
+
+  constructor(
+    private smartCityService: SmartCityService,
+    private router: Router,
+  ) {
+  }
 
   private initMap(): void {
     this.map = L.map('map', {
-      center: [ -23.089, -47.218 ],
-      zoom: 8
+      center: [ -23.529, -46.6658 ],
+      zoom: 12
     });
 
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -32,11 +54,11 @@ export class CreateAlertComponent implements AfterViewInit{
     });
 
     this.map.on('click', (event: any) => {
-      const lat = event.latlng.lat;
-      const lng = event.latlng.lng;
+      this.latitude = event.latlng.lat;
+      this.longitude = event.latlng.lng;
       console.log(event.latlng.lat, event.latlng.lng)
 
-      L.marker([lat, lng], { icon: customIconR }).addTo(this.map)
+      L.marker([this.latitude, this.longitude], { icon: customIconR }).addTo(this.map)
     });
 
     tiles.addTo(this.map);
@@ -44,6 +66,20 @@ export class CreateAlertComponent implements AfterViewInit{
 
   ngAfterViewInit(): void {
     this.initMap()
+  }
+
+  send() {
+    this.smartCityService.sendSensor({
+      latitude: this.latitude,
+      longitude: this.longitude,
+      name: this.name,
+      type: this.type,
+      status: this.status,
+      currentValue: this.currentValue,
+      unit: this.unit,
+    }).subscribe(() => {
+      this.router.navigate(['/']);
+    })
   }
 
 }

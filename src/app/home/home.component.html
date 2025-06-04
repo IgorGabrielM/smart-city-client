@@ -1,41 +1,60 @@
 <div class="w-full h-20 bg-[color:#A3CCAB]">
   <div class="w-full h-full items-center p-10 flex justify-between">
     <span class="font-extrabold text-xl">Smart City</span>
-    <span class="font-bold">Home</span>
+    <div class="flex gap-10">
+      <span class="font-bold" [routerLink]="['create-alert']">Relatar</span>
+      <span class="font-bold">Home</span>
+    </div>
   </div>
 </div>
 
-<div class="flex justify-between mt-9 mr-5 h-screen">
-  <div class="w-full">
+<div class="flex justify-between md:mt-9 mr-5 h-screen container-responsive">
+  <div class="w-full content-responsive">
     <div class="map-container">
-      <div class="map-frame">
+      <div class="map-frame relative">
         <div id="map"></div>
       </div>
     </div>
   </div>
-  <div class="w-10/12 h-4/5 flex flex-col gap-5">
-    <div class="h-1/2 border rounded-xl shadow p-5">
-      <div class="flex items-center gap-2">
-        <img class="w-5 h-5" src="https://cdn-icons-png.flaticon.com/512/999/999105.png" alt="Pin de alerta">
-        <span class="font-bold text-xl">Alertas</span>
-      </div>
-      <div class="flex flex-col border rounded p-2 mt-3">
-        <span class="font-bold text-lg">Titulo</span>
-        <span>DD/MM/YYYY</span>
+  <div class="w-10/12 h-4/5 flex flex-col gap-5 mx-auto content-responsive">
+    <div>
+      <div class="alert-container">
+        <div class="flex items-center gap-2 mb-3">
+          <img class="w-5 h-5" src="https://cdn-icons-png.flaticon.com/512/999/999105.png" alt="Pin de alerta">
+          <span class="font-bold text-xl">Alertas</span>
+        </div>
+        <div *ngFor="let alert of alerts" class="alert-item">
+          <span class="font-bold text-lg">{{ alert.title }}</span>
+          <span class="font-bold text-sm text-gray-800">{{ alert.location }}</span>
+        </div>
       </div>
     </div>
-    <div class="h-1/2 border rounded-xl shadow p-5 flex-col justify-between">
+    <div class="h-1/2 flex-col justify-between">
       <div class="flex items-center gap-2">
-        <img class="w-5 h-5" src="https://cdn-icons-png.flaticon.com/512/484/484167.png" alt="Pin de relatado pela comunidade">
+        <img class="w-5 h-5" src="https://cdn-icons-png.flaticon.com/512/484/484167.png"
+             alt="Pin de relatado pela comunidade">
         <span class="font-bold text-xl">Relatados pela comunidade</span>
       </div>
-      <div class="flex flex-col border rounded p-2 mt-3">
-        <span class="font-bold text-lg">Titulo</span>
-        <span>DD/MM/YYYY</span>
-      </div>
-      <div class="bg-[color:#A3CCAB] p-2 rounded w-fit px-5" [routerLink]="['create-alert']">
-        <span class="font-bold">Relatar</span>
+      <div class="flex gap-5 mt-3">
+        <div class="border rounded-xl p-5">
+          <span class="font-bold text-md mb-2">Prioridade</span>
+          <div *ngFor="let type of populationReports?.byPriority; let i = index" class="flex my-3 gap-2">
+            <div [class]="'w-5 h-5 rounded-full ' + getColor(i) "></div>
+            <span class="font-bold text-sm text-gray-800">{{ type.count }}</span>
+          </div>
+        </div>
+        <div class="alert-container w-full">
+          <div class="flex items-center gap-2 mb-3">
+            <img class="w-5 h-5" src="https://cdn-icons-png.flaticon.com/512/999/999105.png" alt="Pin de alerta">
+            <span class="font-bold text-xl">Alertas</span>
+          </div>
+          <div *ngFor="let type of populationReports?.byType; let i = index" class="alert-item-population">
+            <span class="font-bold text-lg">{{ getName(i) }}</span>
+            <span class="font-bold text-sm text-gray-600">{{ type.count }}</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+
 </div>
